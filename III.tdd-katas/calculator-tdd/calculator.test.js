@@ -25,3 +25,9 @@ describe('Step 3', function () {
         expect(add('1\n2,3')).toBe(6);
     });
 });
+
+describe('Step 4', function () {
+    test('handles changing the delimiter', function () {
+        expect(add('//;\n1;2')).toBe(3);
+    });
+});
