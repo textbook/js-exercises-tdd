@@ -9,5 +9,5 @@ function sum(values) {
 }
 
 module.exports = function add (string) {
-    return sum(string.split(',').map(safeParseToInt));
+    return sum(string.split(/[,\n]/).map(safeParseToInt));
 }
