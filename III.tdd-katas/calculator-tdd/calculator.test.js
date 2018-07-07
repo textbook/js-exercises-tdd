@@ -31,3 +31,15 @@ describe('Step 4', function () {
         expect(add('//;\n1;2')).toBe(3);
     });
 });
+
+describe('Step 5', function () {
+    function delayAdding(string) {
+        return function () {
+            return add(string);
+        };
+    }
+
+    test('rejects negative numbers', function () {
+        expect(delayAdding('1,4,-1')).toThrow('negatives not allowed: -1');
+    });
+});
