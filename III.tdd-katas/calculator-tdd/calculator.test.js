@@ -47,3 +47,9 @@ describe('Step 5', function () {
         expect(delayAdding('1,4,-1,-4')).toThrow('negatives not allowed: -1, -4');
     });
 });
+
+describe('Step 6', function () {
+    test('ignores big numbers', function () {
+        expect(add('999,1000,1001')).toBe(1999);
+    });
+});
