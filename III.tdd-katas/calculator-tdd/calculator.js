@@ -4,8 +4,11 @@ function safeParseToInt(string) {
 
 module.exports = function add (string) {
     let total = safeParseToInt(string);
-    if (string.indexOf(',') > -1) {
-        total += safeParseToInt(string.split(',')[1]);
+    let nextComma = string.indexOf(',');
+    while (nextComma > -1) {
+        string = string.slice(nextComma + 1)
+        total += safeParseToInt(string);
+        nextComma = string.indexOf(',');
     }
     return total;
 }
