@@ -42,4 +42,8 @@ describe('Step 5', function () {
     test('rejects negative numbers', function () {
         expect(delayAdding('1,4,-1')).toThrow('negatives not allowed: -1');
     });
+
+    test('rejects multiple negative numbers', function () {
+        expect(delayAdding('1,4,-1,-4')).toThrow('negatives not allowed: -1, -4');
+    });
 });
