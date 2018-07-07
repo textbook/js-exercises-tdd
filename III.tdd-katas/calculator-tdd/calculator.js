@@ -3,9 +3,7 @@ function safeParseToInt (string) {
 }
 
 function sum (values) {
-    return values.reduce(function (accumulator, value) {
-        return accumulator + value;
-    }, 0);
+    return values.reduce((accumulator, value) => accumulator + value, 0);
 }
 
 const delimiterMarker = '//';
@@ -29,18 +27,14 @@ function extractValues(string) {
 }
 
 function validate(values) {
-    const negatives = values.filter(function (value) {
-        return value < 0;
-    });
+    const negatives = values.filter(value => value < 0);
     if (negatives.length > 0) {
         throw new Error(`negatives not allowed: ${negatives.join(', ')}`);
     }
 }
 
 function removeValuesLargerThan(values, limit) {
-    return values.filter(function (value) {
-        return value <= limit;
-    });
+    return values.filter(value => value <= limit);
 }
 
 module.exports = function add (string) {
