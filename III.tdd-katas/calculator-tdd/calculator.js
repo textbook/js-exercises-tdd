@@ -1,1 +1,3 @@
-module.exports = function add () {}
+module.exports = function add () {
+    return 0;
+}
