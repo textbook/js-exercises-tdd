@@ -1,3 +1,3 @@
-module.exports = function add () {
-    return 0;
+module.exports = function add (string) {
+    return string ? parseInt(string) : 0;
 }
