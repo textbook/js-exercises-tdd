@@ -37,8 +37,14 @@ function validate(values) {
     }
 }
 
+function removeValuesLargerThan(values, limit) {
+    return values.filter(function (value) {
+        return value <= limit;
+    });
+}
+
 module.exports = function add (string) {
     const values = extractValues(string);
     validate(values);
-    return sum(values);
+    return sum(removeValuesLargerThan(values, 1000));
 }
