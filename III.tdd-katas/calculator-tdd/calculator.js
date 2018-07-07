@@ -3,12 +3,14 @@ function safeParseToInt(string) {
 }
 
 module.exports = function add (string) {
-    let total = safeParseToInt(string);
-    let nextComma = string.indexOf(',');
-    while (nextComma > -1) {
-        string = string.slice(nextComma + 1)
+    let total = 0;
+    while (true) {
+        const nextComma = string.indexOf(',');
         total += safeParseToInt(string);
-        nextComma = string.indexOf(',');
+        if (nextComma === -1) {
+            break;
+        }
+        string = string.slice(nextComma + 1);
     }
     return total;
 }
