@@ -29,11 +29,12 @@ function extractValues(string) {
 }
 
 function validate(values) {
-    values.forEach(function (value) {
-        if (value < 0) {
-            throw new Error(`negatives not allowed: ${value}`);
-        }
+    const negatives = values.filter(function (value) {
+        return value < 0;
     });
+    if (negatives.length > 0) {
+        throw new Error(`negatives not allowed: ${negatives.join(', ')}`);
+    }
 }
 
 module.exports = function add (string) {
