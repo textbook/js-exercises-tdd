@@ -15,17 +15,29 @@ function getDelimiter (string) {
     return firstLine.slice(delimiterMarker.length,);
 }
 
-module.exports = function add (string) {
+function splitString(string, delimiter) {
+    return string.split(new RegExp(`[${delimiter}\n]`));
+}
+
+function extractValues(string) {
     let delimiter = ',';
     if (string.indexOf(delimiterMarker) === 0) {
         delimiter = getDelimiter(string);
         string = string.slice(delimiterMarker.length + delimiter.length);
     }
-    const values = string.split(new RegExp(`[${delimiter}\n]`)).map(safeParseToInt);
+    return splitString(string, delimiter).map(safeParseToInt);
+}
+
+function validate(values) {
     values.forEach(function (value) {
         if (value < 0) {
             throw new Error(`negatives not allowed: ${value}`);
         }
     });
+}
+
+module.exports = function add (string) {
+    const values = extractValues(string);
+    validate(values);
     return sum(values);
 }
