@@ -19,3 +19,9 @@ describe('Step 2', function () {
         expect(add('1,2,3,4')).toBe(10);
     });
 });
+
+describe('Step 3', function () {
+    test('handles newlines between numbers', function () {
+        expect(add('1\n2,3')).toBe(6);
+    });
+});
