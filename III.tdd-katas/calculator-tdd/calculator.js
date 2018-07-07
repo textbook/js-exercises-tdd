@@ -21,5 +21,11 @@ module.exports = function add (string) {
         delimiter = getDelimiter(string);
         string = string.slice(delimiterMarker.length + delimiter.length);
     }
-    return sum(string.split(new RegExp(`[${delimiter}\n]`)).map(safeParseToInt));
+    const values = string.split(new RegExp(`[${delimiter}\n]`)).map(safeParseToInt);
+    values.forEach(function (value) {
+        if (value < 0) {
+            throw new Error(`negatives not allowed: ${value}`);
+        }
+    });
+    return sum(values);
 }
