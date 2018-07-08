@@ -7,11 +7,17 @@ describe('Password Verifier', () => {
 
     describe('length requirements', () => {
         it('returns true for length greater than 8', () => {
-            expect(verify('ninechars')).toBe(true);
+            expect(verify('nineChars')).toBe(true);
         });
 
         it('returns false for length less than or equal to 8', () => {
-            expect(verify('eightchr')).toBe(false);
+            expect(verify('eightChr')).toBe(false);
+        });
+    });
+
+    describe('case requirements', () => {
+        it('should return false for all lowercase', () => {
+            expect(verify('alllowercase')).toBe(false);
         });
     });
 });
