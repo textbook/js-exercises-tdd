@@ -1,17 +1,17 @@
 function matches (string, rule) {
-    return string.split('').filter(letter => letter === rule(letter));
+    return string.split('').filter(rule);
 }
 
 function uppercase (string) {
-    return matches(string, letter => letter.toUpperCase());
+    return matches(string, letter => letter === letter.toUpperCase());
 }
 
 function lowercase (string) {
-    return matches(string, letter => letter.toLowerCase());
+    return matches(string, letter => letter === letter.toLowerCase());
 }
 
 function numerical (string) {
-    return string.split('').filter(letter => !isNaN(parseInt(letter)));
+    return matches(string, letter => !isNaN(parseInt(letter)));
 }
 
 module.exports = function verify (password) {
