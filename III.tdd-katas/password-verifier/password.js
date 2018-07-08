@@ -18,8 +18,10 @@ module.exports = function verify (password) {
     if (!password) {
         throw new Error('password must be a string');
     }
-    return password.length > 8 
-        && uppercase(password).length > 0
+    if (password.length <= 8) {
+        throw new Error('password must contain more than 8 characters');
+    }
+    return uppercase(password).length > 0
         && lowercase(password).length > 0
         && numerical(password).length > 0;
 }
