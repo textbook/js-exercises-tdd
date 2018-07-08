@@ -21,7 +21,13 @@ module.exports = function verify (password) {
     if (password.length <= 8) {
         throw new Error('password must contain more than 8 characters');
     }
-    return uppercase(password).length > 0
-        && lowercase(password).length > 0
-        && numerical(password).length > 0;
+    if (uppercase(password).length === 0) {
+        throw new Error('password must contain at least one uppercase character');
+    }
+    if (lowercase(password).length === 0) {
+        throw new Error('password must contain at least one lowercase character');
+    }   
+    if (numerical(password).length === 0) {
+        throw new Error('password must contain at least one numerical character');
+    }
 }
