@@ -15,8 +15,10 @@ function numerical (string) {
 }
 
 module.exports = function verify (password) {
-    return !!password 
-        && password.length > 8 
+    if (!password) {
+        throw new Error('password must be a string');
+    }
+    return password.length > 8 
         && uppercase(password).length > 0
         && lowercase(password).length > 0
         && numerical(password).length > 0;
