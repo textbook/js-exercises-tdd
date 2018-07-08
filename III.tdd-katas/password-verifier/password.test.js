@@ -1,8 +1,8 @@
 const verify = require('./password');
 
 describe('Password Verifier', () => {
-    it('returns false for null', () => {
-        expect(verify(null)).toBe(false);
+    it('throws an error for null', () => {
+        expect(() => verify(null)).toThrow('password must be a string');
     });
 
     describe('length requirements', () => {
