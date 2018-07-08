@@ -1,3 +1,3 @@
-module.exports = function verify () {
-    return false;
+module.exports = function verify (password) {
+    return !!password;
 }
