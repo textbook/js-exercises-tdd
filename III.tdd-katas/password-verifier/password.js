@@ -15,19 +15,15 @@ function numerical (string) {
 }
 
 module.exports = function verify (password) {
-    if (!password) {
-        throw new Error('password must be a string');
-    }
-    if (password.length <= 8) {
-        throw new Error('password must contain more than 8 characters');
-    }
-    if (uppercase(password).length === 0) {
-        throw new Error('password must contain at least one uppercase character');
-    }
-    if (lowercase(password).length === 0) {
-        throw new Error('password must contain at least one lowercase character');
-    }   
-    if (numerical(password).length === 0) {
-        throw new Error('password must contain at least one numerical character');
-    }
+    [
+        [p => !!p, 'password must be a string'],
+        [p => p.length > 8, 'password must contain more than 8 characters'],
+        [p => uppercase(p).length > 0, 'password must contain at least one uppercase character'],
+        [p => lowercase(p).length > 0, 'password must contain at least one lowercase character'],
+        [p => numerical(p).length > 0, 'password must contain at least one numerical character'],
+    ].forEach(([requirement, error]) => {
+        if (!requirement(password)) {
+            throw new Error(error);
+        }
+    });
 }
