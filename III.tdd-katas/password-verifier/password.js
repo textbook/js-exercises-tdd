@@ -2,25 +2,29 @@ function matches (string, rule) {
     return string.split('').filter(rule);
 }
 
-function uppercase (string) {
-    return matches(string, letter => letter === letter.toUpperCase());
+function uppercase (letter) {
+    return letter === letter.toUpperCase();
 }
 
-function lowercase (string) {
-    return matches(string, letter => letter === letter.toLowerCase());
+function lowercase (letter) {
+    return letter === letter.toLowerCase();
 }
 
-function numerical (string) {
-    return matches(string, letter => !isNaN(parseInt(letter)));
+function numerical (letter) {
+    return !isNaN(parseInt(letter));
+}
+
+function atLeastOne (rule) {
+    return password => matches(password, rule).length > 0;
 }
 
 module.exports = function verify (password) {
     [
         [p => !!p, 'password must be a string'],
         [p => p.length > 8, 'password must contain more than 8 characters'],
-        [p => uppercase(p).length > 0, 'password must contain at least one uppercase character'],
-        [p => lowercase(p).length > 0, 'password must contain at least one lowercase character'],
-        [p => numerical(p).length > 0, 'password must contain at least one numerical character'],
+        [atLeastOne(uppercase), 'password must contain at least one uppercase character'],
+        [atLeastOne(lowercase), 'password must contain at least one lowercase character'],
+        [atLeastOne(numerical), 'password must contain at least one numerical character'],
     ].forEach(([requirement, error]) => {
         if (!requirement(password)) {
             throw new Error(error);
