@@ -1,9 +1,13 @@
+function matches (string, rule) {
+    return string.split('').filter(letter => letter === rule(letter));
+}
+
 function uppercase (string) {
-    return string.split('').filter(letter => letter == letter.toUpperCase());
+    return matches(string, letter => letter.toUpperCase());
 }
 
 function lowercase (string) {
-    return string.split('').filter(letter => letter == letter.toLowerCase());
+    return matches(string, letter => letter.toLowerCase());
 }
 
 module.exports = function verify (password) {
