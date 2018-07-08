@@ -16,8 +16,12 @@ describe('Password Verifier', () => {
     });
 
     describe('case requirements', () => {
-        it('should return false for all lowercase', () => {
+        it('returns false for all lowercase', () => {
             expect(verify('alllowercase')).toBe(false);
+        });
+
+        it('returns false for all uppercase', () => {
+            expect(verify('ALLUPPERCASE')).toBe(false);
         });
     });
 });
