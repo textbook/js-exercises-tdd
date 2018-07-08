@@ -1,1 +1,3 @@
-module.exports = function verify () {}
+module.exports = function verify () {
+    return false;
+}
