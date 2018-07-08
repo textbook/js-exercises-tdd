@@ -17,16 +17,19 @@ describe('Password Verifier', () => {
     });
 
     describe('character requirements', () => {
-        it('returns false for all lowercase', () => {
-            expect(verify('alllowercase')).toBe(false);
+        it('throws an error for all lowercase', () => {
+            expect(() => verify('alllowercase'))
+                .toThrow('password must contain at least one uppercase character');
         });
 
-        it('returns false for all uppercase', () => {
-            expect(verify('ALLUPPERCASE')).toBe(false);
+        it('throws an error for all uppercase', () => {
+            expect(() => verify('ALLUPPERCASE'))
+                .toThrow('password must contain at least one lowercase character');
         });
 
-        it('returns false for all alphabetical', () => {
-            expect(verify('AllAlphabetical')).toBe(false);
+        it('throws an error for all alphabetical', () => {
+            expect(() => verify('AllAlphabetical'))
+                .toThrow('password must contain at least one numerical character');
         });
     });
 });
