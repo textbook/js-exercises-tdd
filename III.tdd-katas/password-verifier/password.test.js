@@ -6,12 +6,13 @@ describe('Password Verifier', () => {
     });
 
     describe('length requirements', () => {
-        it('returns true for length greater than 8', () => {
-            expect(verify('9Charactr')).toBe(true);
+        it('does not throw an error for length greater than 8', () => {
+            expect(() => verify('9Charactr')).not.toThrow();
         });
 
-        it('returns false for length less than or equal to 8', () => {
-            expect(verify('8Chractr')).toBe(false);
+        it('throws an error for length less than or equal to 8', () => {
+            expect(() => verify('8Chractr'))
+                .toThrow('password must contain more than 8 characters');
         });
     });
 
